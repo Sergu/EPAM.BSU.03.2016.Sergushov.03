@@ -103,7 +103,7 @@ namespace Task1
         {
             unchecked
             {
-                if (arr == null)
+                if (this == null)
                 {
                     return 0;
                 }

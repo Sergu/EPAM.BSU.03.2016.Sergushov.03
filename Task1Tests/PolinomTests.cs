@@ -42,16 +42,44 @@ namespace Task1Tests
             Assert.AreEqual(expectedResult, result);
         }
         [TestMethod]
-        public void PolinomEquals_nullReference_returnsFalse()
+        public void PolinomEquals_nullReference_returnsNotEquals()
         {
             Polinom polinom = new Polinom(4, 5);
             Assert.IsFalse(polinom.Equals(null));
         }
         [TestMethod]
-        public void PolinomEquals_sameReferences_returnsTrue()
+        public void PolinomEquals_sameReferences_returnEquals()
         {
             Polinom polinom = new Polinom(4, 5, 7 , 9);
             Assert.IsFalse(polinom.Equals(null));
+        }
+        [TestMethod]
+        public void PolinomEquals_sameObjects_returnEquals()
+        {
+            Polinom polinom1 = new Polinom(1,56,34,123,34);
+            Polinom polinom2 = new Polinom(1,56,34,123,34);
+            Assert.IsTrue(polinom1.Equals(polinom2));
+        }
+        [TestMethod]
+        public void PolinomEquals_differentObjects_returnEquals()
+        {
+            Polinom polinom1 = new Polinom(1, 56, 34, 123, 34);
+            Polinom polinom2 = new Polinom(1, 56, 34, 1232, 34,123,56,21);
+            Assert.IsFalse(polinom1.Equals(polinom2));
+        }
+        [TestMethod]
+        public void PolinomGetHashCode_compareHashCodesOfDifferentObjects__returnsNotEquals()
+        {
+            Polinom polinom1 = new Polinom(1, 56, 34, 123, 34);
+            Polinom polinom2 = new Polinom(1, 56, 34, 1232, 34, 123, 56, 21);
+            Assert.IsTrue(polinom1.GetHashCode() != polinom2.GetHashCode());
+        }
+        [TestMethod]
+        public void PolinomGetHashCode_compareHashCodesOfsameObjects__returnsEquals()
+        {
+            Polinom polinom1 = new Polinom(1, 56, 34, 123, 341,42);
+            Polinom polinom2 = new Polinom(1, 56, 34, 123, 341, 42);
+            Assert.IsTrue(polinom1.GetHashCode() == polinom2.GetHashCode());
         }
     }
 }
