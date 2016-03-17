@@ -8,6 +8,12 @@ namespace Task1Tests
     public class PolinomTests
     {
         [TestMethod]
+        [ExpectedException (typeof(NullReferenceException))]
+        public void Polinom_nullArrayInit_throwsException()
+        {
+            Polinom polinom = new Polinom(null);
+        }
+        [TestMethod]
         public void PolinomAdd()
         {
             Polinom expectedResult = new Polinom(15, -1, 111, 3699, 27, 23);
@@ -34,6 +40,18 @@ namespace Task1Tests
             Polinom polinom2 = new Polinom(2, -5, -1, 5, 15, 23);
             Polinom result = polinom1 * polinom2;
             Assert.AreEqual(expectedResult, result);
+        }
+        [TestMethod]
+        public void PolinomEquals_nullReference_returnsFalse()
+        {
+            Polinom polinom = new Polinom(4, 5);
+            Assert.IsFalse(polinom.Equals(null));
+        }
+        [TestMethod]
+        public void PolinomEquals_sameReferences_returnsTrue()
+        {
+            Polinom polinom = new Polinom(4, 5, 7 , 9);
+            Assert.IsFalse(polinom.Equals(null));
         }
     }
 }

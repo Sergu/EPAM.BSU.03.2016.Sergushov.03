@@ -12,6 +12,10 @@ namespace Task1
 
         public Polinom(params int[] arr)
         {
+            if (arr == null)
+            {
+                throw new NullReferenceException();
+            }
             this.arr = arr;
         }
         public static Polinom operator +(Polinom polinom1, Polinom polinom2)
